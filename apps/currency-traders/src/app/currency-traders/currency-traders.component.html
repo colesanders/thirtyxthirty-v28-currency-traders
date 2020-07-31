@@ -1,0 +1,34 @@
+<div>
+    <div class="secondary-div">
+        <mat-toolbar class="secondary-toolbar mat-elevation-z5" 
+        style="display: flex; justify-content: space-between;">
+            <span>Currency Trader List</span>
+            <div *ngIf="(currencyTrader$|async)">
+                <a mat-button class="nav-link mat-elevation-z5" 
+                [routerLink]="(currencyTrader$ | async).id" routerLinkActive="active">
+                    <span >
+                        Currency Trader Overview
+                    </span>
+                </a>
+            </div>
+        </mat-toolbar>
+    </div>
+    
+    <div class="currencys-containers">
+        <div class="currencys-list">
+            <thirty-currency-traders-list [currencyTraders]="currencyTraders$ | async" (selected)="select($event)" (deleted)="delete($event)">
+            </thirty-currency-traders-list>
+        </div>
+        <div [@openClose]="detailOpen ? 'open' : 'closed'" 
+        (click)="focusDetail()">
+            <thirty-currency-traders-detail [currencyTrader]="currencyTrader$ | async" (saved)="save($event)" (cancelled)="cancel()" > 
+            </thirty-currency-traders-detail>
+        </div>
+    </div>
+    
+    <div style="width:fit-content; margin:auto; margin-bottom: 20px;">
+        <router-outlet>
+        </router-outlet>
+    </div>
+</div>
+

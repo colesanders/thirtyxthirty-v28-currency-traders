@@ -1,0 +1,30 @@
+@import '~@angular/material/theming';
+
+mat-slider {
+    width: 100%;
+    margin: auto;
+}
+
+.currency-counter {
+    max-width: 60px;
+    width: 100%;
+}
+
+
+mat-card-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-item{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: auto !important;
+}
+
+img {
+    height: 50px;
+}
+
+

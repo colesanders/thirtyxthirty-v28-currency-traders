@@ -1,0 +1,33 @@
+<mat-card class="mat-card-dark mat-elevation-z8"> 
+    <mat-card-header style="display: flex; justify-content: space-between;">
+      <mat-card-title class="accent">
+        Exchange Rates For Bitcoin
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <span *ngIf="currency;else choose">
+
+        <h3 matLine>{{ currency.code }}
+          <mat-icon [svgIcon]="getCurrencyIcon(currency.code)"></mat-icon>
+        </h3>
+        <p matLine>
+          {{currency.description}}
+        </p>
+        {{ currency.rate_float | currency:currency.code}} to 1 Bitcoin
+        
+        <ng-template #elseblock>
+          <mat-spinner></mat-spinner>
+        </ng-template>
+      </span>
+      <ng-template #choose>
+        <h3 matLine>Choose Currency!</h3>
+      </ng-template>
+      
+
+    </mat-card-content>
+    <mat-card-actions *ngIf="currency" style="display: flex; justify-content: space-between;">
+      <button type="button" mat-button (click)="cancelled.emit();$event.stopImmediatePropagation();">
+        Cancel
+      </button>
+    </mat-card-actions>
+</mat-card>

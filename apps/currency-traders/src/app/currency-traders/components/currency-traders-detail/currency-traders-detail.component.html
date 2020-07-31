@@ -1,0 +1,44 @@
+<mat-card class="mat-card-dark mat-elevation-z8"> 
+    <mat-card-header class="accent">
+      <mat-card-title>
+        <span *ngIf="currencyTraderForm.value.id !== null; else elseBlock">
+          Editing Currency Trader
+        </span>
+        <ng-template #elseBlock>
+          Create Currency Trader
+        </ng-template>
+      </mat-card-title>
+
+      
+    </mat-card-header>
+  <form *ngIf="currencyTrader" [formGroup]="currencyTraderForm" >
+    <mat-card-content>
+
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+
+      <mat-list>
+        <mat-list-item *ngFor="let holding of currencyTrader.holdings; last as last">
+          <h3 matLine>{{holding.amount | currency:holding.currency}}</h3>
+          <p matLine>
+            {{holding.currency }}
+          </p>
+          <mat-icon [svgIcon]="getCurrencyIcon(holding.currency)"></mat-icon>
+          <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+        </mat-list-item>
+      </mat-list>
+
+
+
+    </mat-card-content>
+    <mat-card-actions style="display: flex; justify-content: space-between;">
+      <button [disabled]="currencyTraderForm.invalid" type="submit" mat-button color="primary"
+      (click)="saveTrader();$event.stopImmediatePropagation();">Save</button>
+      <button type="button" mat-button (click)="cancelled.emit();$event.stopImmediatePropagation();cancel();">
+        Cancel
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

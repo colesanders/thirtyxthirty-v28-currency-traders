@@ -1,0 +1,35 @@
+<div>
+    <div class="secondary-div ">
+        <mat-toolbar class="secondary-toolbar mat-elevation-z15" 
+        style="display: flex; justify-content: space-between;">
+            <span>Current Exchange Rates
+                <mat-icon svgIcon="bitcoin"></mat-icon>
+            </span>
+            <div *ngIf="(currency$|async)">
+                <a mat-button class="nav-link mat-elevation-z5" 
+                [routerLink]="(currency$ | async).code" routerLinkActive="active">
+                    <span >
+                        Currency Overview
+                    </span>
+                </a>
+            </div>
+        </mat-toolbar>
+    </div>
+    
+    <div class="currencys-containers">
+        <div class="currencys-list">
+            <thirty-currencys-list [currencys]="currencys$ | async" (selected)="select($event)">
+            </thirty-currencys-list>
+        </div>
+        <div [@openClose]="detailOpen ? 'open' : 'closed'" 
+        (click)="focusDetail();$event.stopImmediatePropagation()">
+            <thirty-currencys-detail [currency]="currency$ | async" (cancelled)="cancel()"> 
+            </thirty-currencys-detail>
+    
+            <router-outlet >
+            </router-outlet>
+        </div>
+    </div>
+</div>
+
+

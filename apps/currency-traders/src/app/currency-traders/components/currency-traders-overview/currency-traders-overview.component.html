@@ -1,0 +1,25 @@
+<mat-card class="mat-card-dark  mat-elevation-z5" style="width: 100%"> 
+    <div *ngIf="(currencyTrader$|async)">
+      <mat-card-header style="display: flex; justify-content: space-between;">
+        <mat-card-title class="accent">
+          CurrencyTrader: 
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{ (currencyTrader$ | async).name | titlecase}} 
+        </mat-card-subtitle>
+        
+      </mat-card-header>
+      <mat-divider [inset]="true"></mat-divider>
+      <mat-card-content>
+
+        {{ currencyTrader$ | async | json }}
+
+      </mat-card-content>
+  
+      <mat-card-actions style="display: flex; justify-content: space-between;">
+        <button type="button" mat-button (click)="close()">
+          Close
+        </button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
