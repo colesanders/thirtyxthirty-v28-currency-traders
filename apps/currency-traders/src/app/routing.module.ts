@@ -40,7 +40,7 @@ const routes: Routes = [
     canActivate: [LoginGuard],
   },
   { path: 'trading-portal', component: TradingPortalComponent,
-    //canActivate: [LoginGuard, SelectTraderGuard],
+    canActivate: [LoginGuard, SelectTraderGuard],
   },
   { path: 'login', component: LoginComponent},
   { path: '404', component: FourOhFourComponent},
