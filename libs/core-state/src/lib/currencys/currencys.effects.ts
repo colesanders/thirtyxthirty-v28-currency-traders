@@ -4,7 +4,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { fetch, pessimisticUpdate } from '@nrwl/angular';
 import { map, tap, exhaust, exhaustMap, catchError } from 'rxjs/operators';
 import * as CurrencysActions from './currencys.actions';
-import { Currency, BPIApiObj, BPI} from '@thirty/api-interfaces';
+import { Currency, BPIApiObj, BPI, ConversionApiObj} from '@thirty/api-interfaces';
 import { merge, of } from 'rxjs';
 
 @Injectable()
@@ -59,6 +59,20 @@ export class CurrencysEffects {
         })
       ),
       onError: (action, error) => CurrencysActions.loadCurrencyFailure({ error })
+    })
+  );
+
+  @Effect() convertCurrency$ = this.actions$.pipe(
+    ofType(CurrencysActions.convertCurrency),
+    fetch({
+      run: (action) => this.currencysService.convert(action.from, action.to).pipe(
+        map((conversionApiObj: ConversionApiObj) => {
+          const conversionRate: number = Object.values(conversionApiObj.rates)[0];
+
+          return CurrencysActions.convertCurrencySuccess({ conversionRate: conversionRate })
+        })
+      ),
+      onError: (action, error) => CurrencysActions.convertCurrencyFailure({ error })
     })
   );
 

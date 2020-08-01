@@ -15,11 +15,16 @@ export class CurrencysFacade {
   loaded$ = this.store.pipe(select(CurrencysSelectors.getCurrencysLoaded));
   allCurrencys$ = this.store.pipe(select(CurrencysSelectors.getAllCurrencys));
   selectedCurrency$ = this.store.pipe(select(CurrencysSelectors.getSelectedCurrency));
+  currentConversionRate$ = this.store.pipe(select(CurrencysSelectors.getConversionRate))
 
   constructor(private store: Store, private actions$: ActionsSubject) { }
 
   selectCurrency(selectedId: string) {
     this.dispatch(CurrencysActions.selectCurrency({ selectedId }));
+  }
+
+  getConversionRate(from, to){
+    this.dispatch(CurrencysActions.convertCurrency({ from, to }))
   }
 
   resetSelectedCurrency(){

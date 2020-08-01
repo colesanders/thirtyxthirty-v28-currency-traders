@@ -4,6 +4,7 @@ import { Currency, BPIApiObj } from '@thirty/api-interfaces';
 import { Observable } from 'rxjs';
 
 export const BASE_URL = 'https://api.coindesk.com/v1/bpi/currentprice';
+export const CONVERSION_URL = 'https://api.exchangeratesapi.io/latest'
 
 
 @Injectable({
@@ -19,6 +20,10 @@ export class CurrencysService {
 
   all(){
     return this.http.get('https://openexchangerates.org/api/currencies.json');
+  }
+
+  convert(from: string, to: string){
+    return this.http.get(CONVERSION_URL + '?symbols=' + to + '&base=' + from);
   }
 
   byCode(code: string): Observable<BPIApiObj>{

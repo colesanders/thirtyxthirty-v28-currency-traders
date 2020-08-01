@@ -1,0 +1,11 @@
+.wrapper {
+    margin: auto auto;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 50% 50%;
+}
+
+.outcome-box{
+    margin: auto auto;
+    text-align: center;
+}

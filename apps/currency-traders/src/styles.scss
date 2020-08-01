@@ -65,7 +65,6 @@ thirty-root {
   justify-content: space-between;
   background-color: $tertiary-color;
   border-bottom-right-radius: 10px;
-  border-bottom: thin solid black;
 }
 
 .secondary-div {
@@ -77,9 +76,7 @@ thirty-root {
   display: flex; 
   justify-content: space-between;
   background-color: $card-background;
-  
-  border: medium solid black;
-  border-top: thin solid black;
+
   border-radius: 0px 0px 10px 10px;
 }
 
@@ -134,13 +131,9 @@ mat-sidenav {
 
   .mat-card-dark {
     background-color: $card-background;
-    border: medium solid black;
-    border-radius: 10px;
   }
   .mat-card-light {
     background-color: whitesmoke;
-    border: medium solid black;
-    border-radius: 10px;
   }
 }
 .login-border {
@@ -148,10 +141,15 @@ mat-sidenav {
   border-radius: 5px;
 }
 
+.mat-card-flat {
+  background-color: $card-background;
+}
+.portal-cards {
+  max-width: 33%;
+}
+
 .mat-card-dark {
   background-color: $card-background;
-  border: medium solid black;
-  border-radius: 10px;
 
   table{
     background-color: $card-background;
@@ -160,6 +158,4 @@ mat-sidenav {
 
 .mat-card-light {
   background-color: whitesmoke;
-  border: thin solid black;
-  border-radius: 10px;
 }

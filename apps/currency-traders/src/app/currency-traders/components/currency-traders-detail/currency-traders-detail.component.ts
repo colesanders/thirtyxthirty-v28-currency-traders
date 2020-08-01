@@ -56,8 +56,6 @@ export class CurrencyTradersDetailComponent implements OnInit, OnChanges{
 
   cancel(){
     this.currencyTraderForm.reset();
-    const currencyControl = this.currencyTraderForm.get('currencys');
-    currencyControl.patchValue([]);
   }
 
   createFormGroup(){

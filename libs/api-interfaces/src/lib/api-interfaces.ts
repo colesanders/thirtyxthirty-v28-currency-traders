@@ -29,6 +29,14 @@ export interface BPIApiObj {
   bpi: BPI,
 }
 
+export interface ConversionApiObj {
+  rates: {
+    any: number
+  },
+  base: string,
+  date: string,
+}
+
 export interface BPI {
   USD?: Currency,
   GBP?: Currency,

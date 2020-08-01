@@ -10,6 +10,22 @@ export const selectCurrency = createAction(
   props<{ selectedId: string }>()
 );
 
+// Currency conversion
+export const convertCurrency = createAction(
+  '[Currencys] Convert Currency',
+  props<{ from: string, to: string }>()
+);
+
+export const convertCurrencySuccess = createAction(
+  '[Currencys] Load Currencys Success',
+  props<{ conversionRate: number }>()
+);
+
+export const convertCurrencyFailure = createAction(
+  '[Currencys] Load Currencys Failure',
+  props<{ error: any }>()
+);
+
 // Load Currencys
 export const loadCurrencys = createAction('[Currencys] Load Currencys');
 export const loadCurrencysSample = createAction('[Currencys] Load Currencys Sample');

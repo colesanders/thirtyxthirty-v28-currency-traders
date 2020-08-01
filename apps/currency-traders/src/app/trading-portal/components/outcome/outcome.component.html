@@ -1,0 +1,31 @@
+<mat-card class="mat-card-flat mat-elevation-z5">
+    <mat-card-header>
+        <mat-card-title>
+            Outcome of Exchange
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content >
+        <section class="wrapper">
+            <section *ngIf="holding">
+                <h3 matLine>{{holding.amount | currency:holding.currency}}</h3>
+                <p matLine>
+                    {{holding.currency }}
+                </p>
+            </section>
+            
+            <section *ngIf="currency">
+                <h3 matLine>{{currency.code}}</h3>
+                <p matLine>
+                    {{currency.description}}
+                </p>
+            </section>
+        </section>
+
+        <mat-divider [inset]="true"></mat-divider>
+        <section class="outcome-box">
+            Conversion Rate: {{conversionRate}}
+        </section>
+        
+    </mat-card-content>
+</mat-card>

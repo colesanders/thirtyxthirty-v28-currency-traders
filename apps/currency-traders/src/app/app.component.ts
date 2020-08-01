@@ -17,6 +17,8 @@ export class AppComponent {
   sideBarOpen = true;
 
   links = [
+    { path: '/home', title: 'Home' },
+    { path: '/trading-portal', title: 'Trading Portal' },
     { path: '/currencys', title: 'Currencys' },
     { path: '/currency-traders', title: 'Currency Traders' },
     { path: '/login', title: 'Login' },

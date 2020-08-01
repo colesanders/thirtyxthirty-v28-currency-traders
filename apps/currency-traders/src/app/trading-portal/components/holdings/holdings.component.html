@@ -1,0 +1,23 @@
+<mat-card class="mat-card-flat mat-elevation-z5">
+    <mat-card-header>
+        <mat-card-title>
+            Current Holdings: 
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <mat-list *ngIf="currencyTrader" >
+            <mat-list-item *ngFor="let holding of currencyTrader.holdings; last as last"
+            (click)="selectHolding(holding)">
+              <h3 matLine>{{holding.amount | currency:holding.currency}}</h3>
+              <p matLine>
+                {{holding.currency }}
+              </p>
+              <mat-icon [svgIcon]="getCurrencyIcon(holding.currency)"></mat-icon>
+              <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+            </mat-list-item>
+        </mat-list>
+
+    </mat-card-content>
+</mat-card>

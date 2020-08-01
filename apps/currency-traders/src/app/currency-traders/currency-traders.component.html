@@ -16,7 +16,7 @@
     
     <div class="currencys-containers">
         <div class="currencys-list">
-            <thirty-currency-traders-list [currencyTraders]="currencyTraders$ | async" (selected)="select($event)" (deleted)="delete($event)">
+            <thirty-currency-traders-list [currentTrader]="currencyTrader$ | async" [currencyTraders]="currencyTraders$ | async" (selected)="select($event)" (deleted)="delete($event)">
             </thirty-currency-traders-list>
         </div>
         <div [@openClose]="detailOpen ? 'open' : 'closed'" 

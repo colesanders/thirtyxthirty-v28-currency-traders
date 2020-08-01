@@ -8,6 +8,7 @@ import { CurrencyTrader } from '@thirty/api-interfaces';
 })
 export class CurrencyTradersListComponent implements OnInit {
   @Input() currencyTraders: [CurrencyTrader];
+  @Input() currentTrader: CurrencyTrader;
   @Input() delete: boolean;
 
   @Output() selected = new EventEmitter<CurrencyTrader>();

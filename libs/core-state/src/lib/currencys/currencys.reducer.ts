@@ -10,6 +10,7 @@ export interface CurrencysState extends EntityState<Currency> {
   selectedId?: string | number; // which Currencys record has been selected
   loaded: boolean; // has the Currencys list been loaded
   error?: string | null; // last known error (if any)
+  conversionRate?: number;
 }
 
 export interface CurrencysPartialState {
@@ -32,6 +33,9 @@ const _currencysReducer = createReducer(
   on(CurrencysActions.selectCurrency, (state, { selectedId }) =>
     Object.assign({}, state, { selectedId })
   ),
+  on(CurrencysActions.convertCurrencySuccess, (state, { conversionRate }) =>
+    Object.assign({}, state, { conversionRate })
+  ),
   // Load currencys
   on(
     CurrencysActions.loadCurrencysSuccess,
@@ -49,6 +53,7 @@ const _currencysReducer = createReducer(
   on(
     CurrencysActions.loadCurrencyFailure,
     CurrencysActions.loadCurrencysFailure,
+    CurrencysActions.convertCurrencyFailure,
     (state, { error }) => ({
       ...state,
       error

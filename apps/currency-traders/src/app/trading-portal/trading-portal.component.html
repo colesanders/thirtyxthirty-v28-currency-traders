@@ -1,0 +1,21 @@
+<div class="secondary-div ">
+    <mat-toolbar class="secondary-toolbar mat-elevation-z15" 
+    style="display: flex; justify-content: space-between;">
+        <span>Trading Portal
+            <mat-icon svgIcon="bitcoin"></mat-icon>
+        </span>
+    </mat-toolbar>
+</div>
+
+
+<div class="currencys-containers">
+    <div class="portal-cards">
+        <thirty-holdings [currencyTrader]="currentTrader$ | async" (selectedHolding)="selectHolding($event)"></thirty-holdings>
+    </div>
+    <thirty-currencys-list [currencys]="currencys$ | async" (selected)="selectCurrency($event)"></thirty-currencys-list>
+    <div class="portal-cards">
+        <thirty-outcome [holding]="selectedHolding" 
+        [conversionRate]="currentConversionRate$ | async" 
+        [currency]="selectedCurrency$ | async"></thirty-outcome>
+    </div>
+</div>

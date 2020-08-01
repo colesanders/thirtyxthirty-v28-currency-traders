@@ -25,6 +25,11 @@ import { CurrencyTradersComponent } from './currency-traders/currency-traders.co
 import { CurrencyTradersOverviewComponent } from './currency-traders/components/currency-traders-overview/currency-traders-overview.component';
 import { CurrencyTradersDetailComponent } from './currency-traders/components/currency-traders-detail/currency-traders-detail.component';
 import { CurrencyTradersListComponent } from './currency-traders/components/currency-traders-list/currency-traders-list.component';
+import { HomeComponent } from './home/home.component';
+import { CreateTraderComponent } from './home/components/create-trader/create-trader.component';
+import { TradingPortalComponent } from './trading-portal/trading-portal.component';
+import { HoldingsComponent } from './trading-portal/components/holdings/holdings.component';
+import { OutcomeComponent } from './trading-portal/components/outcome/outcome.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +46,11 @@ import { CurrencyTradersListComponent } from './currency-traders/components/curr
     RatingComponent,
     MatChipComponent,
     CurrencysOverviewComponent,
+    HomeComponent,
+    CreateTraderComponent,
+    TradingPortalComponent,
+    HoldingsComponent,
+    OutcomeComponent,
   ],
   imports: [
     BrowserModule,

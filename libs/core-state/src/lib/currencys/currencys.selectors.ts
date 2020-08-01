@@ -38,6 +38,11 @@ export const getSelectedId = createSelector(
   (state: CurrencysState) => state.selectedId
 );
 
+export const getConversionRate = createSelector(
+  getCurrencysState,
+  (state: CurrencysState) => state.conversionRate
+);
+
 export const getSelectedCurrency = createSelector(
   getCurrencysEntities,
   getSelectedId,

@@ -1,0 +1,24 @@
+<mat-card class=" home-card  mat-elevation-z8">
+    <mat-card-header>
+        <mat-card-title>
+            Welcome To The Currency Trading App
+        </mat-card-title>
+        <mat-card-subtitle>
+            Select a trader profile
+        </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="currencys-list">
+            <thirty-currency-traders-list [currentTrader]="currencyTrader$ | async" [currencyTraders]="currencyTraders$ | async" 
+            (selected)="select($event)" (deleted)="delete($event)">
+            </thirty-currency-traders-list>
+        </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <button mat-button [disabled]="!(currencyTrader$|async)" (click)="selectTrader()">Select Trader</button>
+        <button mat-button (click)="createTrader()">Create New Trader</button>
+    </mat-card-actions>
+
+</mat-card>

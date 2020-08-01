@@ -11,7 +11,7 @@
 
       
     </mat-card-header>
-  <form *ngIf="currencyTrader" [formGroup]="currencyTraderForm" >
+  <form [formGroup]="currencyTraderForm" >
     <mat-card-content>
 
       <mat-form-field>
@@ -19,7 +19,7 @@
         <input matInput formControlName="name">
       </mat-form-field>
 
-      <mat-list>
+      <mat-list *ngIf="currencyTrader" >
         <mat-list-item *ngFor="let holding of currencyTrader.holdings; last as last">
           <h3 matLine>{{holding.amount | currency:holding.currency}}</h3>
           <p matLine>
