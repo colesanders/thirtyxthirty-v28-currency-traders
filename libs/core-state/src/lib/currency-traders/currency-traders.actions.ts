@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { CurrencyTrader } from '@thirty/api-interfaces';
+import { CurrencyTrader, Holding } from '@thirty/api-interfaces';
 
 export const resetSelectedCurrencyTrader = createAction('[CurrencyTraders] Reset Selected CurrencyTrader');
 export const resetCurrencyTraders = createAction('[CurrencyTraders] Reset CurrencyTraders');
@@ -8,6 +8,11 @@ export const resetCurrencyTraders = createAction('[CurrencyTraders] Reset Curren
 export const selectCurrencyTrader = createAction(
   '[CurrencyTraders] Select CurrencyTrader',
   props<{ selectedId: string }>()
+);
+// Select Holding
+export const selectHolding = createAction(
+  '[CurrencyTraders] Select Holding',
+  props<{ selectedHoldingIndex: number }>()
 );
 
 // Load CurrencyTraders

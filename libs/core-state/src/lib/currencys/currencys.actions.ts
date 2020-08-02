@@ -17,12 +17,12 @@ export const convertCurrency = createAction(
 );
 
 export const convertCurrencySuccess = createAction(
-  '[Currencys] Load Currencys Success',
+  '[Currencys] Convert Currency Success',
   props<{ conversionRate: number }>()
 );
 
 export const convertCurrencyFailure = createAction(
-  '[Currencys] Load Currencys Failure',
+  '[Currencys] Convert Currency Failure',
   props<{ error: any }>()
 );
 

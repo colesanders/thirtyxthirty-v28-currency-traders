@@ -1,4 +1,4 @@
-import { CurrencyTrader } from '@thirty/api-interfaces';
+import { CurrencyTrader, Holding } from '@thirty/api-interfaces';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
 
@@ -10,6 +10,7 @@ export interface CurrencyTradersState extends EntityState<CurrencyTrader> {
   selectedId?: string | number; // which CurrencyTraders record has been selected
   loaded: boolean; // has the CurrencyTraders list been loaded
   error?: string | null; // last known error (if any)
+  selectedHoldingIndex?: number;
 }
 
 export interface CurrencyTradersPartialState {
@@ -29,6 +30,9 @@ const _currencyTradersReducer = createReducer(
   on(CurrencyTradersActions.resetSelectedCurrencyTrader, state => Object.assign({}, state, { selectedId: null })),
   on(CurrencyTradersActions.selectCurrencyTrader, (state, { selectedId }) =>
     Object.assign({}, state, { selectedId })
+  ),
+  on(CurrencyTradersActions.selectHolding, (state, { selectedHoldingIndex }) =>
+    Object.assign({}, state, { selectedHoldingIndex })
   ),
   // Load currencytraders
   on(

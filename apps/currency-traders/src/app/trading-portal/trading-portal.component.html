@@ -4,18 +4,40 @@
         <span>Trading Portal
             <mat-icon svgIcon="bitcoin"></mat-icon>
         </span>
+
+        <span >
+            <mat-button-toggle-group appearance="legacy" [(ngModel)]="bitcoinSelected" >
+                <mat-button-toggle class="toggle-button" [value]="false">Foreign Exchange</mat-button-toggle>
+                <mat-button-toggle class="toggle-button" [value]="true">Bitcoin Exchange</mat-button-toggle>
+            </mat-button-toggle-group>
+        </span>
     </mat-toolbar>
 </div>
 
 
 <div class="currencys-containers">
     <div class="portal-cards">
-        <thirty-holdings [currencyTrader]="currentTrader$ | async" (selectedHolding)="selectHolding($event)"></thirty-holdings>
+        <thirty-holdings 
+        [currencyTrader]="currentTrader$ | async" 
+        [currHolding]="holding$ | async" 
+        (selectedHolding)="selectHolding($event)"></thirty-holdings>
     </div>
-    <thirty-currencys-list [currencys]="currencys$ | async" (selected)="selectCurrency($event)"></thirty-currencys-list>
-    <div class="portal-cards">
-        <thirty-outcome [holding]="selectedHolding" 
+    <div *ngIf="!bitcoinSelected" class="portal-cards">
+        <thirty-currencys-list 
+        [currencys]="currencys$ | async" 
+        [selectedCurrency]="selectedCurrency$ | async"
+        (selected)="selectCurrency($event)"></thirty-currencys-list>
+    </div>
+    <div *ngIf="!bitcoinSelected;else elseblock" class="portal-cards">
+        <thirty-outcome (newHolding)="convertHolding($event)"
+        [holding]="holding$ | async" 
         [conversionRate]="currentConversionRate$ | async" 
         [currency]="selectedCurrency$ | async"></thirty-outcome>
     </div>
+    <ng-template #elseblock class="portal-cards">
+        <thirty-outcome (newHolding)="convertHolding($event)"
+        [holding]="holding$ | async" 
+        [conversionRate]="1" 
+        [currency]="bitcoinCurrency"></thirty-outcome>
+    </ng-template>
 </div>

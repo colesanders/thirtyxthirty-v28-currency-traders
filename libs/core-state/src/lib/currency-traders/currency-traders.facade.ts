@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { filter, tap } from 'rxjs/operators';
 import { select, Store, Action, ActionsSubject } from '@ngrx/store';
 
-import { CurrencyTrader } from '@thirty/api-interfaces';
+import { CurrencyTrader, Holding } from '@thirty/api-interfaces';
 
 import * as CurrencyTradersActions from './currency-traders.actions';
 import { CurrencysFacade } from '../currencys/currencys.facade';
@@ -16,6 +16,7 @@ export class CurrencyTradersFacade {
   loaded$ = this.store.pipe(select(CurrencyTradersSelectors.getCurrencyTradersLoaded));
   allCurrencyTraders$ = this.store.pipe(select(CurrencyTradersSelectors.getAllCurrencyTraders));
   selectedCurrencyTrader$ = this.store.pipe(select(CurrencyTradersSelectors.getSelectedCurrencyTrader));
+  selectedHolding$ = this.store.pipe(select(CurrencyTradersSelectors.getSelectedHolding));
 
   mutations$ = this.actions$.pipe(
     filter((action: Action) =>
@@ -32,6 +33,10 @@ export class CurrencyTradersFacade {
 
   selectCurrencyTrader(currencyTrader: CurrencyTrader) {
     this.dispatch(CurrencyTradersActions.selectCurrencyTrader({ selectedId: currencyTrader.id }));
+  }
+
+  selectHolding(index: number){
+    this.dispatch(CurrencyTradersActions.selectHolding({ selectedHoldingIndex: index }));
   }
 
   selectCurrencyTraderById(selectedId: string) {

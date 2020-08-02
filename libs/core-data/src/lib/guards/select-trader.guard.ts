@@ -22,7 +22,7 @@ export class SelectTraderGuard implements CanActivate {
           if(currTrader){
             return true;
           }else{
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('home');
             return false;
           }
           

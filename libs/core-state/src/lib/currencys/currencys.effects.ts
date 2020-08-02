@@ -68,7 +68,6 @@ export class CurrencysEffects {
       run: (action) => this.currencysService.convert(action.from, action.to).pipe(
         map((conversionApiObj: ConversionApiObj) => {
           const conversionRate: number = Object.values(conversionApiObj.rates)[0];
-
           return CurrencysActions.convertCurrencySuccess({ conversionRate: conversionRate })
         })
       ),

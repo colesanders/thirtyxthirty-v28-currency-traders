@@ -23,7 +23,11 @@
     <mat-card-content>
       <mat-list>
         <mat-list-item *ngFor="let currency of currencys | slice:sliceStart:sliceEnd ; last as last" (click)="select(currency)" style="cursor: pointer">
-          <h3 matLine> {{ currency.code }}</h3>
+          <h3 matLine> 
+            <span *ngIf="selectedCurrency === currency">
+              <mat-icon svgIcon="bitcoin"></mat-icon>
+            </span>
+            {{ currency.code }}</h3>
           <p matLine>
             <span >
             </span> 

@@ -14,6 +14,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export class CurrencysListComponent implements OnInit {
   @Input() currencys: Currency[];
   @Output() selected = new EventEmitter<Currency>();
+  @Input() selectedCurrency: Currency;
 
   myControl = new FormControl();
   filteredCurrency: Observable<Currency[]>;

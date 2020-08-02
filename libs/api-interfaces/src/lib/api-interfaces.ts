@@ -5,7 +5,7 @@ export interface CurrencyTrader {
 }
 
 export interface Holding {
-  currency: Currency,
+  currency: string,
   amount: number
 }
 

@@ -15,7 +15,8 @@ export class CurrencysFacade {
   loaded$ = this.store.pipe(select(CurrencysSelectors.getCurrencysLoaded));
   allCurrencys$ = this.store.pipe(select(CurrencysSelectors.getAllCurrencys));
   selectedCurrency$ = this.store.pipe(select(CurrencysSelectors.getSelectedCurrency));
-  currentConversionRate$ = this.store.pipe(select(CurrencysSelectors.getConversionRate))
+  currentConversionRate$ = this.store.pipe(select(CurrencysSelectors.getConversionRate));
+  currencyCodes$ = this.store.pipe(select(CurrencysSelectors.getCurrencyCodes));
 
   constructor(private store: Store, private actions$: ActionsSubject) { }
 

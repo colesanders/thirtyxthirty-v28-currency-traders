@@ -9,15 +9,15 @@
         <section class="wrapper">
             <section *ngIf="holding">
                 <h3 matLine>{{holding.amount | currency:holding.currency}}</h3>
-                <p matLine>
+                <p >
                     {{holding.currency }}
                 </p>
             </section>
             
-            <section *ngIf="currency">
-                <h3 matLine>{{currency.code}}</h3>
-                <p matLine>
-                    {{currency.description}}
+            <section *ngIf="currency" class="right-side">
+                <h3 matLine>{{ (convertedAmount) | currency:currency.code }}</h3>
+                <p>
+                    {{currency.code}}
                 </p>
             </section>
         </section>
@@ -26,6 +26,11 @@
         <section class="outcome-box">
             Conversion Rate: {{conversionRate}}
         </section>
-        
     </mat-card-content>
+    <mat-card-actions>
+        <section class="outcome-box">
+            <button mat-button class="convert-button"
+        (click)="convert()">Convert!</button>
+        </section>
+    </mat-card-actions>
 </mat-card>

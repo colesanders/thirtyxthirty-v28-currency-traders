@@ -8,9 +8,14 @@
     <mat-card-content>
 
         <mat-list *ngIf="currencyTrader" >
-            <mat-list-item *ngFor="let holding of currencyTrader.holdings; last as last"
-            (click)="selectHolding(holding)">
-              <h3 matLine>{{holding.amount | currency:holding.currency}}</h3>
+            <mat-list-item *ngFor="let holding of currencyTrader.holdings; last as last, index as i"
+            (click)="selectHolding(i)">
+              <h3 matLine>
+                <span *ngIf="currHolding === holding">
+                    <mat-icon svgIcon="bitcoin"></mat-icon>
+                  </span>
+                  {{holding.amount | currency:holding.currency}}
+                </h3>
               <p matLine>
                 {{holding.currency }}
               </p>

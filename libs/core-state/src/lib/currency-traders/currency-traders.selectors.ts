@@ -11,7 +11,6 @@ import { CurrencyTrader, Currency } from '@thirty/api-interfaces';
 
 // Lookup the 'CurrencyTraders' feature state managed by NgRx
 export const getCurrencyTradersState = createFeatureSelector<
-  CurrencyTradersPartialState,
   CurrencyTradersState
 >(CURRENCYTRADERS_FEATURE_KEY);
 
@@ -46,4 +45,21 @@ export const getSelectedCurrencyTrader = createSelector(
   getCurrencyTradersEntities,
   getSelectedId,
   (entities, selectedId) => selectedId && entities[selectedId]
+);
+
+export const getSelectedHoldingId = createSelector(
+  getCurrencyTradersState,
+  (state: CurrencyTradersState) => state.selectedHoldingIndex
+);
+
+export const getSelectedHolding = createSelector(
+  getSelectedCurrencyTrader,
+  getSelectedHoldingId,
+  (selectedTrader: CurrencyTrader, selectedHoldingIndex) => {
+    if(selectedTrader.holdings[selectedHoldingIndex]){
+      return selectedTrader.holdings[selectedHoldingIndex];
+    }else {
+      return 0
+    }
+  }
 );

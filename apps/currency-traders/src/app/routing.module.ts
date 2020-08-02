@@ -44,7 +44,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent},
   { path: '404', component: FourOhFourComponent},
-  { path: '', redirectTo: '/currencys', pathMatch: 'full'},
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', component: FourOhFourComponent }
 ];
 

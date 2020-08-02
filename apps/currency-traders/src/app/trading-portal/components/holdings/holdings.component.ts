@@ -8,6 +8,7 @@ import { CurrencyTrader,Currency,CurrencyIcons, getCurrencyIcon, Holding } from 
 })
 export class HoldingsComponent implements OnInit {
   @Input() currencyTrader: CurrencyTrader;
+  @Input() currHolding: Holding
   @Output() selectedHolding = new EventEmitter();
 
   constructor() { }
@@ -20,8 +21,8 @@ export class HoldingsComponent implements OnInit {
     return currIcon
   }
 
-  selectHolding(holding: Holding){
-    this.selectedHolding.emit(holding);
+  selectHolding(index: number){
+    this.selectedHolding.emit(index);
   }
 
 }
