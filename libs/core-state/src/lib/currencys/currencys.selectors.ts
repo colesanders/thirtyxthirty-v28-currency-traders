@@ -47,6 +47,17 @@ export const getSelectedCurrency = createSelector(
   (entities, selectedId) => selectedId && entities[selectedId]
 );
 
+export const getSelectedHoldingId = createSelector(
+  getCurrencysState,
+  (state: CurrencysState) => state.selectedHoldingId
+);
+
+export const getSelectedHolding = createSelector(
+  getCurrencysEntities,
+  getSelectedHoldingId,
+  (entities, selectedHoldingId) => selectedHoldingId && entities[selectedHoldingId]
+);
+
 export const getConversionRate = createSelector(
   getCurrencysState,
   (state: CurrencysState) => state.conversionRate

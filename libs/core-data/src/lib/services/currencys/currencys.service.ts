@@ -19,7 +19,7 @@ export class CurrencysService {
   }
 
   all(){
-    return this.http.get('https://openexchangerates.org/api/currencies.json');
+    return this.http.get(CONVERSION_URL);
   }
 
   convert(from: string, to: string){

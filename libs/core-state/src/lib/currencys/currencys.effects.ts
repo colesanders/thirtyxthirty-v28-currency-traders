@@ -13,17 +13,27 @@ export class CurrencysEffects {
     ofType(CurrencysActions.loadCurrencys),
     fetch({
       run: (action) => this.currencysService.all().pipe(
-        map((largeCurrencyObj) => {
+        map((conversionApiObj: ConversionApiObj) => {
           const currencys: Currency[] = [];
-          const descriptions = Object.values(largeCurrencyObj)
-          Object.keys(largeCurrencyObj).forEach((code, i) => {
+          const values = Object.values(conversionApiObj.rates)
+          Object.keys(conversionApiObj.rates).forEach((code, i) => {
             const currency: Currency = {
               id: code,
               code: code,
-              description: descriptions[i]
+              rate_float: values[i],
             }
             currencys.push(currency);
           })
+          const BTC: Currency = {
+            id: "BTC",
+            code: "BTC",
+            description: "bitcoin"
+          }
+          const EUR: Currency = {
+            id: conversionApiObj.base,
+            code: conversionApiObj.base,
+          }
+          currencys.push(BTC,EUR)
 
           return CurrencysActions.loadCurrencysSuccess({ currencys })
         })
@@ -39,6 +49,12 @@ export class CurrencysEffects {
         map((bpiApiObj: BPIApiObj) => {
           const currBPI: BPI = bpiApiObj.bpi
           const currencys: Currency[] = Object.values(currBPI);
+          const BTC: Currency = {
+            id: "BTC",
+            code: "BTC",
+            description: "bitcoin"
+          }
+          currencys.push(BTC)
 
           return CurrencysActions.loadCurrencysSuccess({ currencys })
         })
@@ -71,6 +87,36 @@ export class CurrencysEffects {
           return CurrencysActions.convertCurrencySuccess({ conversionRate: conversionRate })
         })
       ),
+      onError: (action, error) => CurrencysActions.convertCurrencyFailure({ error })
+    })
+  );
+
+  @Effect() convertCurrencyBTC$ = this.actions$.pipe(
+    ofType(CurrencysActions.convertCurrencyBTC),
+    fetch({
+      run: (action) => {
+        if(action.to.includes('BTC')){
+          return this.currencysService.byCode(action.from).pipe(
+            map((bpiApiObj: BPIApiObj)=>{
+              const currBPI: BPI = bpiApiObj.bpi
+              const currencys: Currency[] = Object.values(currBPI);
+              const currency: Currency = currencys.find((curr)=> curr.code.includes(action.from))
+              return CurrencysActions.convertCurrencySuccess({ conversionRate: (1/currency.rate_float) })
+            })
+          )
+        }else{
+          return this.currencysService.byCode(action.to).pipe(
+            map((bpiApiObj: BPIApiObj)=>{
+              const currBPI: BPI = bpiApiObj.bpi
+              const currencys: Currency[] = Object.values(currBPI);
+              const currency: Currency = currencys.find((curr)=> curr.code.includes(action.to))
+              return CurrencysActions.convertCurrencySuccess({ conversionRate: currency.rate_float })
+            })
+          )
+        }
+
+
+      },
       onError: (action, error) => CurrencysActions.convertCurrencyFailure({ error })
     })
   );

@@ -37,7 +37,7 @@
       </mat-list>
     </mat-card-content>
     <mat-card-actions>
-      <mat-paginator [length]="this.currencys.length" class="mat-elevation-z8" style="background-color: grey;" [pageSize]="pageSize" [pageIndex]="pageIndex"
+      <mat-paginator [length]="this.currencys.length" class="mat-elevation-z8 paginator" [pageSize]="pageSize" [pageIndex]="pageIndex"
       [pageSizeOptions]="pageSizeOptions" (page)="updatePageSlice($event)" >
       </mat-paginator>
     </mat-card-actions>

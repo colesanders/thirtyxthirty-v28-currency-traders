@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { CurrencysFacade, CurrencyTradersFacade } from '@thirty/core-state';
 import { Currency, Holding, CurrencyTrader } from '@thirty/api-interfaces';
 import { merge } from 'rxjs';
@@ -10,20 +10,17 @@ import { tap } from 'rxjs/operators';
   templateUrl: './trading-portal.component.html',
   styleUrls: ['./trading-portal.component.scss']
 })
-export class TradingPortalComponent implements OnInit {
+export class TradingPortalComponent implements OnInit, OnChanges {
   currentTrader$ = this.currencyTradersFacade.selectedCurrencyTrader$;
   holding$ = this.currencyTradersFacade.selectedHolding$;
 
   currencys$ = this.currencysFacade.allCurrencys$;
   selectedCurrency$ = this.currencysFacade.selectedCurrency$;
+  selectedHoldingCurrency$ = this.currencysFacade.selectedHoldingCurrency$;
   currencyCodes$ = this.currencysFacade.currencyCodes$;
   currentConversionRate$ = this.currencysFacade.currentConversionRate$;
 
-  bitcoinSelected = false;
-  bitcoinCurrency: Currency = {
-    id: 'BC',
-    code: 'BC'
-  }
+
 
   index: number;
   constructor(
@@ -32,7 +29,10 @@ export class TradingPortalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currencysFacade.loadCurrencysSample();
+    this.currencysFacade.loadCurrencys();
+
+  }
+  ngOnChanges(){
 
   }
 
@@ -60,9 +60,11 @@ export class TradingPortalComponent implements OnInit {
     this.currencysFacade.loadCurrency(currency.code);
     this.getConversionRate();
   }
-  selectHolding(index: number){
-    this.currencyTradersFacade.selectHolding(index);
-    this.index = index;
+  selectHolding(input){
+    this.currencyTradersFacade.selectHolding(input.index);
+    this.currencysFacade.selectHoldingCurrency(input.holding.currency)
+    this.currencysFacade.loadCurrency(input.holding.currency);
+    this.index = input.index;
     this.getConversionRate();
   }
 

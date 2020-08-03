@@ -14,7 +14,7 @@ export class AppComponent {
     description: "30x30-V18"
   };
 
-  sideBarOpen = true;
+  sideBarOpen = false;
 
   links = [
     { path: '/home', title: 'Home' },

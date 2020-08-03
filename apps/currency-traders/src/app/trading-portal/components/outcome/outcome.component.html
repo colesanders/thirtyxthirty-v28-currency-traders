@@ -17,7 +17,7 @@
             <section *ngIf="currency" class="right-side">
                 <h3 matLine>{{ (convertedAmount) | currency:currency.code }}</h3>
                 <p>
-                    {{currency.code}}
+                    {{currency.code}} {{currency.symbol | json}}
                 </p>
             </section>
         </section>

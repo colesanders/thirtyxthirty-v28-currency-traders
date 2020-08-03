@@ -21,8 +21,13 @@ export class HoldingsComponent implements OnInit {
     return currIcon
   }
 
-  selectHolding(index: number){
-    this.selectedHolding.emit(index);
+  selectHolding(hold: Holding, i: number){
+    const output = {
+      holding: hold,
+      index: i
+    }
+
+    this.selectedHolding.emit(output);
   }
 
 }

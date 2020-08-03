@@ -36,10 +36,10 @@ $currency-traders-theme: mat-light-theme((
 /* You can add global styles to this file, and also import other style files */
 
 $primary-color: white;
-$secondary-color: #37474F;
+$secondary-color: #CFD8DC;
 $tertiary-color: #263238;
-$accent-color: #8e0900;
-$card-background: grey;
+$accent-color: black;
+$card-background: whitesmoke;
 $anti-accent-color: white;
 
 html,
@@ -75,7 +75,7 @@ thirty-root {
 .secondary-toolbar {
   display: flex; 
   justify-content: space-between;
-  background-color: $card-background;
+  background-color: $secondary-color;
 
   border-radius: 0px 0px 10px 10px;
 }
@@ -146,6 +146,15 @@ mat-sidenav {
 }
 .portal-cards {
   max-width: 33%;
+}
+.home-card {
+  background-color: $card-background;
+  width: 60%;
+  margin: auto;
+  margin-top: 5px;
+}
+.paginator {
+  background-color: $card-background
 }
 
 .mat-card-dark {

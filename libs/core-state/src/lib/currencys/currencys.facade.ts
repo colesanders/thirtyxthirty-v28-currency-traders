@@ -15,6 +15,7 @@ export class CurrencysFacade {
   loaded$ = this.store.pipe(select(CurrencysSelectors.getCurrencysLoaded));
   allCurrencys$ = this.store.pipe(select(CurrencysSelectors.getAllCurrencys));
   selectedCurrency$ = this.store.pipe(select(CurrencysSelectors.getSelectedCurrency));
+  selectedHoldingCurrency$ = this.store.pipe(select(CurrencysSelectors.getSelectedHolding))
   currentConversionRate$ = this.store.pipe(select(CurrencysSelectors.getConversionRate));
   currencyCodes$ = this.store.pipe(select(CurrencysSelectors.getCurrencyCodes));
 
@@ -23,9 +24,17 @@ export class CurrencysFacade {
   selectCurrency(selectedId: string) {
     this.dispatch(CurrencysActions.selectCurrency({ selectedId }));
   }
+  selectHoldingCurrency(selectedHoldingId: string){
+    this.dispatch(CurrencysActions.selectHoldingCurrency({ selectedHoldingId }));
+  }
 
   getConversionRate(from, to){
-    this.dispatch(CurrencysActions.convertCurrency({ from, to }))
+    if(from.includes('BTC') || to.includes('BTC')){
+      this.dispatch(CurrencysActions.convertCurrencyBTC({ from, to}))
+    }else{
+      this.dispatch(CurrencysActions.convertCurrency({ from, to }))
+    }
+    
   }
 
   resetSelectedCurrency(){

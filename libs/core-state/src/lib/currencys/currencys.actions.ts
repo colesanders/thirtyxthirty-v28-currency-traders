@@ -9,10 +9,20 @@ export const selectCurrency = createAction(
   '[Currencys] Select Currency',
   props<{ selectedId: string }>()
 );
+// Select Holding Currency
+export const selectHoldingCurrency = createAction(
+  '[Currencys] Select Holding Currency',
+  props<{ selectedHoldingId: string }>()
+);
 
 // Currency conversion
 export const convertCurrency = createAction(
   '[Currencys] Convert Currency',
+  props<{ from: string, to: string }>()
+);
+// Currency conversion
+export const convertCurrencyBTC = createAction(
+  '[Currencys] Convert Currency BTC',
   props<{ from: string, to: string }>()
 );
 

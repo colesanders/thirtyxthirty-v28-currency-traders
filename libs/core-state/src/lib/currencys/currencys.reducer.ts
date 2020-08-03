@@ -8,6 +8,7 @@ export const CURRENCYS_FEATURE_KEY = 'currency';
 
 export interface CurrencysState extends EntityState<Currency> {
   selectedId?: string | number; // which Currencys record has been selected
+  selectedHoldingId?: string | number;
   loaded: boolean; // has the Currencys list been loaded
   error?: string | null; // last known error (if any)
   conversionRate?: number;
@@ -32,6 +33,9 @@ const _currencysReducer = createReducer(
   on(CurrencysActions.resetSelectedCurrency, state => Object.assign({}, state, { selectedId: null })),
   on(CurrencysActions.selectCurrency, (state, { selectedId }) =>
     Object.assign({}, state, { selectedId })
+  ),
+  on(CurrencysActions.selectHoldingCurrency, (state, { selectedHoldingId }) =>
+    Object.assign({}, state, { selectedHoldingId })
   ),
   on(CurrencysActions.convertCurrencySuccess, (state, { conversionRate }) =>
     Object.assign({}, state, { conversionRate })
